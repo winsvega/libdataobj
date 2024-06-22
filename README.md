@@ -1,0 +1,2 @@
+# libdataobject
+data structures manager
