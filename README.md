@@ -5,10 +5,10 @@ Example Use:
 ```
     #include <libdataobj/DataObject.h>
     using namespace dataobject;
-...
+```
 
-## Define json like structures and access it easily
-# Definition
+# Define json like structures and access it easily
+## Definition
 ```
     DataObject obj;
     obj["int"] = 0;
@@ -19,7 +19,7 @@ Example Use:
     obj["object"]["key2"] = "string";
 ```
 
-# Iterations
+## Iterations
 ```
     for (auto const& el : obj.getSubObjects())
     {
@@ -29,7 +29,21 @@ Example Use:
 
 ```
 
-# Pointers of data
+## Modifiers
+```
+void mod_keyToLowerCase(DataObject& _obj)
+{
+    if (!_obj.getKey().empty())
+    {
+        string& value = _obj.getKeyUnsafe();
+        std::transform(value.begin(), value.end(), value.begin(), [](unsigned char c) { return std::tolower(c); });
+    }
+}
+
+obj.performModifier(mod_keyToLowerCase);
+```
+
+## Pointers of data
 ```
     spDataObject obj;
     (*obj)["data1"] = "text";
@@ -40,7 +54,7 @@ Example Use:
     (*obj2).atKeyPointer("sub data object") = obj;
 ```
 
-# Read
+## Read Json strings (fast, pretty reliable)
 ```
     std::string str = R"(
       {
@@ -61,7 +75,7 @@ Example Use:
     assert(a->atKey("logs").at(0).atKey("removed").asBool() == false);
 ```
 
-# Print
+## Print
 ```
 std::cout << obj.asJson() << std::endl;
 {
