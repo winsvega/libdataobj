@@ -376,6 +376,13 @@ DataObject& DataObject::atUnsafe(size_t _pos)
     return subObjects[_pos].getContent();
 }
 
+spDataObject& DataObject::atPointerUnsafe(size_t _pos)
+{
+    auto& subObjects = getSubObjectsUnsafe();
+    _assert((size_t)_pos < subObjects.size(), "DataObject::atPointerUnsafe(int) out of range!");
+    return subObjects[_pos];
+}
+
 DataObject const& DataObject::atLastElement() const
 {
     auto const& subObjects = getSubObjects();
