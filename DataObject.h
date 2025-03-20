@@ -113,6 +113,7 @@ public:
     DataObject const& atKey(std::string const& _key) const;
     DataObjectK atKeyPointer(std::string const& _key);
     spDataObject& atKeyPointerUnsafe(std::string const& _key);
+    spDataObject& atPointerUnsafe(size_t _pos);
     DataObject& atKeyUnsafe(std::string const& _key);
     DataObject const& at(size_t _pos) const;
     DataObject& atUnsafe(size_t _pos);
